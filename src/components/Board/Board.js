@@ -2,11 +2,22 @@ import React, { Component } from 'react';
 import Square from '../Square/Square'
 
 class Board extends Component {
-	renderSquare(i) {
+	renderSquare(index) {
+		let lineWin = this.props.lineWin;
+		let squareOpts = {};
+		if (lineWin && lineWin.length > 0) {
+			for (let i = 0; i < lineWin.length; i++) {
+				if (lineWin[i] === index) {
+					squareOpts.highlight = true;
+				}
+			}
+		}
+
 		return (
 			<Square
-				value={this.props.squares[i]}
-				onClick={() => this.props.onClick(i)}
+				value={this.props.squares[index]}
+				opts={squareOpts}
+				onClick={() => this.props.onClick(index)}
 			/>
 		);
 	}
