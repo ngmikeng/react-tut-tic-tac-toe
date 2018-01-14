@@ -15,6 +15,7 @@ class Board extends Component {
 
 		return (
 			<Square
+				key={index}
 				value={this.props.squares[index]}
 				opts={squareOpts}
 				onClick={() => this.props.onClick(index)}
