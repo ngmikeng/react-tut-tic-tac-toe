@@ -76,6 +76,19 @@ class Game extends Component {
 		});
 	}
 
+	restart() {
+		this.setState({
+			history: [
+				{
+					squares: Array(9).fill(null)
+				}
+			],
+			stepNumber: 0,
+			xIsNext: true,
+			sortMovesAscending: true
+		});
+	}
+
 	render() {
 		const history = this.state.history;
 		const current = history[this.state.stepNumber];
@@ -111,6 +124,8 @@ class Game extends Component {
 			status = "Next player: " + (this.state.xIsNext ? "X" : "O");
 		}
 
+		let isShowRestart = this.state.stepNumber > 0;
+
 		return (
 			<div className="game">
 				<div className="game-board">
@@ -126,6 +141,9 @@ class Game extends Component {
 				</div>
 				<div>
 					<button onClick={() => this.toggleSortMoves()}>Toggle Sort Moves</button>
+				</div>
+				<div>
+					{isShowRestart ? <button onClick={() => this.restart()}>Restart</button> : ''}
 				</div>
 			</div>
 		);
